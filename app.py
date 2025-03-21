@@ -1,7 +1,6 @@
 import streamlit as st
 import os
-import asyncio
-from utils import fetch_news, sentiment_analysis_summary, extract_trending_words, generate_hindi_speech
+from utils import fetch_news, sentiment_analysis_summary, extract_trending_words, generate_hindi_summary
 
 st.title("📰 News Summarization & Sentiment Analysis")
 
@@ -62,9 +61,7 @@ if st.session_state.news_data:
     if st.button("🎙 Generate Hindi Summary"):
         with st.spinner("Generating Hindi summary..."):
             try:
-                loop = asyncio.new_event_loop()
-                asyncio.set_event_loop(loop)
-                hindi_audio_path = loop.run_until_complete(generate_hindi_speech(summary, news))
+                hindi_audio_path = generate_hindi_summary(summary, news)
 
                 if hindi_audio_path and os.path.exists(hindi_audio_path):
                     st.session_state.hindi_audio_path = hindi_audio_path
@@ -75,7 +72,7 @@ if st.session_state.news_data:
             except Exception as e:
                 st.error(f"❌ Error in generating Hindi summary: {e}")
 
-# ✅ Show audio only after generation
+# Show audio only after generation
 if st.session_state.hindi_audio_path:
     st.subheader("🔊 Listen to Hindi Summary")
     st.audio(st.session_state.hindi_audio_path, format="audio/mp3")

@@ -20,7 +20,7 @@
 ```bash
 news-summarization-app/
 │── app.py                  # Streamlit UI (Frontend)
-│── api.py                  # Flask API (Backend)
+│── api.py                  # get the output in the command line
 │── utils.py                 # Helper functions (Scraping, Sentiment Analysis, TTS)
 │── requirements.txt         # Dependencies list
 │── README.md               # Documentation
@@ -28,7 +28,7 @@ news-summarization-app/
 │── data/                   # (Optional) Sample news data for testing
 │── models/                 # (Optional) Pre-trained models (if needed)
 │── .gitignore              # Ignore unnecessary files (if using Git)
-│── venv/                   # Virtual environment (ignored in Git)
+│── env/                   # Virtual environment (ignored in Git)
 ```
 
 ---
